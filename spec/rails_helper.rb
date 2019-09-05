@@ -32,6 +32,8 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
+  config.render_views = true
+
   config.before(:suite) do
     # Using GIS, so tell database cleaner to leave it alone!
     DatabaseCleaner.strategy = :truncation, { except: ["spatial_ref_sys"] }

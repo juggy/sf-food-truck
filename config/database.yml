@@ -83,3 +83,4 @@ production:
   database: upfluence_production
   username: upfluence
   password: <%= ENV['UPFLUENCE_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'].gsub("postgres", "postgis") %>

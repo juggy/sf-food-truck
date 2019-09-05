@@ -11,6 +11,8 @@
 Here are some trade offs for the current architecture/solution to keep everything simple and under my timebox of 8h:
 
 - use ember-cli-deploy lightning and keep both backend and client in a single repository
+  - the 2 repo makes it easier to deploy to heroku directly
+- provide a dockerfile and docker compose for easier development setup
 - use elastic search as storage and search
   - would be able to scale to a much larger data set
   - would handle more load
@@ -25,6 +27,6 @@ Here are some trade offs for the current architecture/solution to keep everythin
 - 1.5h create rails app with deps, load data and tests
 - 1.5h create the ember app and beasic app layout.
 - 0.5 hook up the backend and front end with fetch
-- x.x Add controller and ember tests
+- 1.0 Add controller and ember tests
 - x.x deploy on heroku
 - 0.5 write README

@@ -17,8 +17,6 @@ RSpec.describe FoodCart, type: :model do
       "status" => "REQUESTED",
       "x" => "6007059.55277",
       "y" => "2103743.32313",
-      "latitude" => "37.7568774515357",
-      "longitude" => "-122.418579889476",
       "schedule" => "http://bsm.sfdpw.org/PermitsTracker/reports/report.aspx?title=schedule&report=rptSchedule&params=permit=19MFF-00075&ExportPDF=1&Filename=19MFF-00075_schedule.pdf",
       "received" => "2019-07-12",
       "priorpermit" => "0",
@@ -50,9 +48,7 @@ RSpec.describe FoodCart, type: :model do
     "schedule" => "http://bsm.sfdpw.org/PermitsTracker/reports/report.aspx?title=schedule&report=rptSchedule&params=permit=19MFF-00075&ExportPDF=1&Filename=19MFF-00075_schedule.pdf",
     "received" => "2019-07-12",
     "priorpermit" => "0",
-    "expirationdate" => "2020-07-15T00:00:00.000",
-    "latitude" => "37.7568774515357",
-    "longitude" => "-122.418579889476"
+    "expirationdate" => "2020-07-15T00:00:00.000"
     }
   end
 
