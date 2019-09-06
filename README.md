@@ -2,13 +2,19 @@
 
 ## HOW TO RUN
 
+You can access a running app on Heroku directly here:
+
+https://sf-food-truck.herokuapp.com/
+
+Bear in mind that this is a free Heroku instance that will take some time to start from a cold start.
+
 To run this project, you must:
 - clone the repo
   - this will also pull the client submodule
 - For rails (backend)
   - run `bundle install`
   - next configure the db with `rake db:create db:migrate`
-  - load the data into the development db with `rake food_cart:load`
+  - load the data into the development db with `SOURCE_URL=https://data.sfgov.org/resource/rqzj-sfat.json rake food_cart:load`
   - Start rails with `rails s`
 - For Ember (frontend)
   - go into the client folder and run `yarn`
@@ -16,7 +22,7 @@ To run this project, you must:
 
 ## ARCHITECTURE OVERVIEW
 
-I decided to be as straightforward as possible for the sake of simplicity and implementation speed. So it runs a vanilla PG/Rails/Ember stack without trying to do too much.
+I decided to be as straight forward as possible for the sake of simplicity and implementation speed. So it runs a vanilla PG/Rails/Ember stack without trying to do too much.
 
 ### BACKEND
 
@@ -28,11 +34,17 @@ The backend presents a single route to the client which is to get a list of food
 
 ### CLIENT
 
-The client is a vanilla Ember application running v3.12. It uses the pod folder structure (my own preference) and angle brackets components. It is composed of 1 main component that uses Ember Leaflet to render and interact with the map. Here is what the component does:
-- Renderd the map centered on SF
+The client is an Ember application running v3.12 without jQuery. It uses the pod folder structure (my own preference) and angle brackets components. It is composed of a main component that uses Ember Leaflet to render and to interact with the map. Here is what that component does:
+- Render the map centered on SF
 - Trigger an ember-concurrency task to fetch (using ember-fetch) the data from the backend. The task has a timeout of 500ms and is restartable to create a deboucning behavior so that ideally a single call is done per map move.
 - The template then renders those food carts on the map using clusters, markers and popup.
 - When the map is moved or zoomed, the center and the radius is calculated and the task is retriggered to fetch new data.
+
+### DEPLOYMENT
+
+It is currently deployed on heroku as a backend and frontend app. This dual app setup is easier because heroku provides free proxying to the api from the client app and both back and front end can be deployed separately.
+
+The backend is using Heroku Scheduler to schedule the data refresh every morning.
 
 ## TRADE OFFS
 
